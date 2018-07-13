@@ -6,72 +6,77 @@ $(document).ready(function() {
         {
             question: "When did the Cold War end?",
             answers: ['1978','1984','1992','1989'],
-            values: [false, false, false, true],
+            correct: 3,
         },
         {
             question: "How many colonies was the US originally?",
             answers: ['11','12','13','14'],
-            values: [false, false, true, false],
+            correct: 2,
         },
 
         {
             question: "Who was the 16th president of the US?",
             answers: ['Abraham Lincoln','Ulysses S. Grant','James Buchanan','Andrew Johnosn'],
-            values: [true, false, false, false],
+            correct: 0,
         },
         {
             question: "How many Senatros in the US congress",
             answers: ['50','100','150','167'],
-            values: [false, true, false, false],
+            correct: 1,
             
         },
         {
             question: "Who is credited with discovering America?",
             answers: ['John F. Kennedy','John McHenry','Christopher Columbs','Rudolph Frances'],
-            values: [false, false, true, false],
+            correct: 2,
         },
         {
             question: "America won independence from this country.",
             answers: ['Brazil','Germany','France','Great Britan'],
-            values: [false, false, false, true],
+            correct: 3,
         },
         {
             question: "Who invented the electric light bulb?",
             answers: ['Shirley Temple','Harry Ford','Thomas Edison','Andrew Jackson'],
-            values: [false, false, true, false],
+            correct: 2,
         }
     ];
 
     // correct answered
-    var correct = 0;
+    var right = 0;
     // wrong answered
     var wrong = 0;
     // unanswered
     var none = 0; 
+    // user guess
+    var userGuess = "";
   
-
-    // ============================================= functions:
-
-
-    
-    var timer = 90;
+    // timer
+    var timer = 5;
     var timer;
     var isTimeRunning = false;
 
+    // hiding the submit and reset button
+    $("#submit").hide();
+    $("#reset").hide();
+    
+    // set up coundown for he trivia
     function startTimer(){
         if(!isTimeRunning) {
             time = setInterval(countDown, 1000);
             isTimeRunning = true;
         }
     }
-        
+    
+    // when time is up,
     function countDown(){
-            $("#timer").html(timer);
+            $("#timer").html("<h2>" + timer + ' seconds remainig.' + "</h2>");
             timer--;
-            console.log(timer);
+    
             if(timer === 0) {
-                none++;
                 stopCount();
+                $("#timer").html("<h2>Your time is up.</h2>");
+                displayResults();
             }
     }
 
@@ -96,17 +101,43 @@ $(document).ready(function() {
         
 
             for (j=0; j < myQuestions[i].answers.length; j++){
-                var answer = $("<h4> <input type='radio' name = 'question - " + i + "' >").addClass("answer").text(myQuestions[i].answers[j]);
-                questionDiv.append(answer);
+                // var answer = $("<h4> <input type='radio' name = 'question - " + i + "' >").addClass("answer").text(myQuestions[i].answers[j]);
+                var answer=(myQuestions[i].answers);
+                btn = $('<div>');
+                btn.text(myQuestions[i].answers[j]);
+                btn.addClass("answer");
+                btn.attr('data-value', j);
+                questionDiv.append(btn);
+
+                // questionDiv.append(answer);
             }
         $("#questionArea").append(questionDiv);
-        
-        
+        $("#submit").show();
 
         }
     }
 
-    
 
+    function checkAnswer(){
+        if (userGuess === myQuestions[i].correct){
+            right++;
+        } else if(userGuess !== myQuestions[i].correct){
+            wrong++;
+            userGuess = "";
+        } else {
+            none++;
+        }
+    }
+
+
+    // when user clicks submit, or time is up, display results
+    function displayResults(){
+        $("#questionArea").hide();
+        $("#submit").hide();
+        $("#results").html("<h3>" +  'Correct answers: ' + right);
+        $("#results").html("<h3>" +  'Wrong answers: ' + wrong);
+        $("#results").html("<h3>" +  'Unanswered: ' + none);
+        $("#reset").show();
+    }
 
 });
