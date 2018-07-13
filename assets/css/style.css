@@ -1,0 +1,13 @@
+body {
+    background-image: url(https://media.giphy.com/media/A82gTnjlyl7QQ/giphy.gif);
+    background-size: cover;
+}
+
+.container {
+    background-color: white;
+    opacity: 0.85;
+    margin: 20px auto;
+    width: 60%;
+    height: 100%;
+    padding: 10px 20px;
+}
