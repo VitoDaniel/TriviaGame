@@ -103,7 +103,7 @@ $(document).ready(function() {
         
             var answers = myQuestions[i].answers;
             for (j=0; j < answers.length; j++){
-                var answer = $("<input type='radio' name='question-" + i + "' >" + myQuestions[i].answers[j])
+                var answer = $("<input type='radio' name='question-' + i + '>" + myQuestions[i].answers[j] + "</input>")
                 // .addClass("answer");
                 
                 // btn = $('<div>');
