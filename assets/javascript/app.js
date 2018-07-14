@@ -52,8 +52,8 @@ $(document).ready(function() {
     var userGuess = "";
   
     // timer
-    var timer = 5;
-    var timer;
+    var timer = 90;
+    var time;
     var isTimeRunning = false;
 
     // hiding the submit and reset button
@@ -82,6 +82,7 @@ $(document).ready(function() {
 
     function stopCount(){
             isTimeRunning=false;
+            timer = 10;
             clearInterval(time);
     }
 
@@ -91,28 +92,37 @@ $(document).ready(function() {
         $("#start").fadeOut(500,displayQ, startTimer());
     });
 
-    function displayQ(){
 
+    // display trivia questions
+    function displayQ(){
 
         for (i=0; i < myQuestions.length; i++) {
             var  questionDiv = $("<div>").addClass("qContainer");
             var question = $("<h4>").addClass("question").text(myQuestions[i].question);
             questionDiv.append(question);
         
+            var answers = myQuestions[i].answers;
+            for (j=0; j < answers.length; j++){
+                var answer = $("<input type='radio' name='question-" + i + "' >" + myQuestions[i].answers[j])
+                // .addClass("answer");
+                
+                // btn = $('<div>');
+                // btn.text(myQuestions[i].answers[j]);
+                // btn.addClass("answer");
+                // btn.attr('data-value', j);
+                // questionDiv.append(btn);
 
-            for (j=0; j < myQuestions[i].answers.length; j++){
-                // var answer = $("<h4> <input type='radio' name = 'question - " + i + "' >").addClass("answer").text(myQuestions[i].answers[j]);
-                var answer=(myQuestions[i].answers);
-                btn = $('<div>');
-                btn.text(myQuestions[i].answers[j]);
-                btn.addClass("answer");
-                btn.attr('data-value', j);
-                questionDiv.append(btn);
-
-                // questionDiv.append(answer);
+                questionDiv.append(answer);
             }
-        $("#questionArea").append(questionDiv);
-        $("#submit").show();
+
+            $("#questionArea").append(questionDiv);
+            $("#submit").show();
+            $("#submit").on("click", function(){
+                displayResults();
+                $("#timer").hide();
+            });
+
+            
 
         }
     }
@@ -132,12 +142,16 @@ $(document).ready(function() {
 
     // when user clicks submit, or time is up, display results
     function displayResults(){
-        $("#questionArea").hide();
+        $("#questionArea").remove();
         $("#submit").hide();
         $("#results").html("<h3>" +  'Correct answers: ' + right);
         $("#results").html("<h3>" +  'Wrong answers: ' + wrong);
         $("#results").html("<h3>" +  'Unanswered: ' + none);
         $("#reset").show();
     }
+
+
+
+    
 
 });
