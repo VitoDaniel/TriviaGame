@@ -43,11 +43,11 @@ $(document).ready(function() {
     ];
 
     // correct answered
-    var right = 0;
+    var right;
     // wrong answered
-    var wrong = 0;
+    var wrong;
     // unanswered
-    var none = 0; 
+    var none; 
     // user guess
     var userGuess = "";
   
@@ -56,92 +56,83 @@ $(document).ready(function() {
     var time;
     var isTimeRunning = false;
 
-    // hiding the submit and reset button
-    $("#submit").hide();
-    $("#reset").hide();
-    
-    
 
-    // set up coundown for he trivia
-    function startTimer(){
-        if(!isTimeRunning) {
-            time = setInterval(countDown, 1000);
-            isTimeRunning = true;
-        }
-    }
-    
-    // when time is up,
-    function countDown(){
-            $("#timer").html("<h2>" + timer + ' seconds remainig.' + "</h2>");
-            timer--;
-    
-            if(timer === 0) {
-                stopCount();
-                $("#timer").html("<h2>Your time is up.</h2>");
-                setTimeout(displayResults, 2000);
+    function startGame(){
+
+        right=0;
+        wrong=0;
+        none=0;
+
+            // hiding the submit and reset button
+        $("#submit").hide();
+        $("#reset").hide();
+
+        // set up coundown for he trivia
+        function startTimer(){
+            if(!isTimeRunning) {
+                time = setInterval(countDown, 1000);
+                isTimeRunning = true;
             }
-    }
-
-    function stopCount(){
-            isTimeRunning=false;
-            timer = 10;
-            clearInterval(time);
-    }
-
-
-    // start the game onse button start is pressed
-    $("#start").on("click", function(){
-        $("#start").fadeOut(500,displayQ);
-        right = 0;
-        wrong = 0;
-        none = 0;
-    });
-
-    $("#reset").on("click", function(){
-        $("#reset").fadeOut(500, displayQ);
-        $("#rightAnswer").hide();
-        $("#wrongAnswer").hide();
-        $("#unAnswered").hide();
-        right = 0;
-        wrong = 0;
-        none = 0;
-    })
-
-    // $("#radioAnswers").prop("checked", checkAnswer());
-
-
-    // display trivia questions
-    function displayQ(){
-
-        startTimer();
-
-        for (i=0; i < myQuestions.length; i++) {
-            var  questionDiv = $("<div>").addClass("qContainer");
-            var question = $("<h4>").addClass("question").text(myQuestions[i].question);
-            questionDiv.append(question);
+        }
         
-            var answers = myQuestions[i].answers;
-            for (j=0; j < answers.length; j++){
-                
-                var answer = $(`<input type="radio" id="radioAnswers" name="question${i}">${myQuestions[i].answers[j]}</input>`)
-              
+        // when time is up,
+        function countDown(){
+                $("#timer").html("<h2>" + timer + ' seconds remainig.' + "</h2>");
+                timer--;
+        
+                if(timer === 0) {
+                    stopCount();
+                    $("#timer").html("<h2>Your time is up.</h2>");
+                    setTimeout(displayResults, 2000);
+                }
+        }
 
-                questionDiv.append(answer);
-            }
+        function stopCount(){
+                isTimeRunning=false;
+                timer = 10;
+                clearInterval(time);
+        }
 
-            $("#questionArea").append(questionDiv);
-            $("#submit").show();
-            $("#submit").on("click", function(){
-                displayResults();
-                $("#timer").hide();
-            });
 
+        // start the game onse button start is pressed
+        $("#start").on("click", function(){
+            $("#start").fadeOut(500,displayQ);
+           
+        });
+
+        
+
+
+        function displayQ(){
+
+            startTimer();
+
+            for (i=0; i < myQuestions.length; i++) {
+                var  questionDiv = $("<div>").addClass("qContainer");
+                var question = $("<h4>").addClass("question").text(myQuestions[i].question);
+                questionDiv.append(question);
             
+                var answers = myQuestions[i].answers;
+                for (j=0; j < answers.length; j++){
+                    
+                    var answer = $(`<input type="radio" id="radioAnswers" name="question${i}">${myQuestions[i].answers[j]}</input>`)
+                
 
+                    questionDiv.append(answer);
+                }
+
+                $("#questionArea").append(questionDiv);
+                $("#submit").show();
+                $("#submit").on("click", function(){
+                    displayResults();
+                    $("#timer").hide();
+                });
+
+
+            }
         }
     }
-
-    
+     
 
 
     function checkAnswer(){
@@ -155,12 +146,18 @@ $(document).ready(function() {
         }
     }
 
-    
+    $("#reset").on("click", function(){
+            $("#reset").fadeOut(500, startGame());
+            $("#rightAnswer").hide();
+            $("#wrongAnswer").hide();
+            $("#unAnswered").hide();
+           
+        })
 
 
     // when user clicks submit, or time is up, display results
     function displayResults(){
-        $("#questionArea").remove();
+        $("#questionArea").hide();
         $("#submit").hide();
         $("#rightAnswer").html("<h3>" +  'Correct answers: ' + right);
         $("#wrongAnswer").html("<h3>" +  'Wrong answers: ' + wrong);
@@ -169,7 +166,7 @@ $(document).ready(function() {
 
     }
 
-  
+    startGame();
 
 
 
