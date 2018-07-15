@@ -60,6 +60,8 @@ $(document).ready(function() {
     $("#submit").hide();
     $("#reset").hide();
     
+    
+
     // set up coundown for he trivia
     function startTimer(){
         if(!isTimeRunning) {
@@ -76,7 +78,7 @@ $(document).ready(function() {
             if(timer === 0) {
                 stopCount();
                 $("#timer").html("<h2>Your time is up.</h2>");
-                displayResults();
+                setTimeout(displayResults, 2000);
             }
     }
 
@@ -89,12 +91,27 @@ $(document).ready(function() {
 
     // start the game onse button start is pressed
     $("#start").on("click", function(){
-        $("#start").fadeOut(500,displayQ, startTimer());
+        $("#start").fadeOut(500,displayQ);
+        right = 0;
+        wrong = 0;
+        none = 0;
     });
 
+    $("#reset").on("click", function(){
+        $("#reset").fadeOut(500, displayQ);
+        $("#rightAnswer").hide();
+        $("#wrongAnswer").hide();
+        $("#unAnswered").hide();
+        right = 0;
+        wrong = 0;
+        none = 0;
+    })
 
+    $("#radioAnswers").prop("checked", checkAnswer());
     // display trivia questions
     function displayQ(){
+
+        startTimer();
 
         for (i=0; i < myQuestions.length; i++) {
             var  questionDiv = $("<div>").addClass("qContainer");
@@ -103,14 +120,9 @@ $(document).ready(function() {
         
             var answers = myQuestions[i].answers;
             for (j=0; j < answers.length; j++){
-                var answer = $("<input type='radio' name='question-' + i + '>" + myQuestions[i].answers[j] + "</input>")
-                // .addClass("answer");
                 
-                // btn = $('<div>');
-                // btn.text(myQuestions[i].answers[j]);
-                // btn.addClass("answer");
-                // btn.attr('data-value', j);
-                // questionDiv.append(btn);
+                var answer = $(`<input type="radio" id="radioAnswers" name="question${i}">${myQuestions[i].answers[j]}</input>`)
+              
 
                 questionDiv.append(answer);
             }
@@ -127,11 +139,13 @@ $(document).ready(function() {
         }
     }
 
+    
+
 
     function checkAnswer(){
         if (userGuess === myQuestions[i].correct){
             right++;
-        } else if(userGuess !== myQuestions[i].correct){
+        } else if(userGuess != myQuestions[i].correct){
             wrong++;
             userGuess = "";
         } else {
@@ -139,16 +153,25 @@ $(document).ready(function() {
         }
     }
 
+    
+
 
     // when user clicks submit, or time is up, display results
     function displayResults(){
         $("#questionArea").remove();
         $("#submit").hide();
-        $("#results").html("<h3>" +  'Correct answers: ' + right);
-        $("#results").html("<h3>" +  'Wrong answers: ' + wrong);
-        $("#results").html("<h3>" +  'Unanswered: ' + none);
+        $("#rightAnswer").html("<h3>" +  'Correct answers: ' + right);
+        $("#wrongAnswer").html("<h3>" +  'Wrong answers: ' + wrong);
+        $("#unAnswered").html("<h3>" +  'Unanswered: ' + none);
         $("#reset").show();
+
     }
+
+  
+
+
+
+    
 
 
 
