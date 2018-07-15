@@ -5,7 +5,7 @@ body {
 
 .container {
     background-color: white;
-    opacity: 0.6;
+    opacity: 0.65;
     margin: 20px auto;
     width: 60%;
     height: 100%;
@@ -44,6 +44,13 @@ h1 {
     text-align: center;
     color: #a21b1b;
     border: 1px solid black;
+}
+
+.question{
+    font-family: 'Fredericka the Great', cursive;
+    color: black;
+    opacity: 100%;
+    font-size: 18px;
     
 }
 
