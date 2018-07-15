@@ -133,7 +133,8 @@ $(document).ready(function() {
             }
     }
      
-
+    var isChecked = $("#radioAnswers").prop("checked");
+    console.log(isChecked); 
 
     function checkAnswer(){
         if (userGuess === myQuestions[i].correct){

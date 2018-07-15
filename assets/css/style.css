@@ -23,10 +23,17 @@ h1 {
 }
 
 
-#start, #submit, #reset {
+#start, #submit {
     padding: 10px;
     margin: 10px 45%;
     font-size: 25px; 
+}
+
+#reset {
+    width: 30%;
+    margin: 10px 35%;
+    font-size: 25px;
+    padding: 10px;
 }
 
 #start,#submit,#reset:hover{
@@ -51,6 +58,7 @@ h1 {
     color: black;
     opacity: 100%;
     font-size: 18px;
-    
 }
+
+
 
