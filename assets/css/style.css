@@ -11,3 +11,21 @@ body {
     height: 100%;
     padding: 10px 20px;
 }
+
+h1 {
+    text-align: center;
+}
+
+#questionArea {
+    text-align: center;
+    color: blue;
+}
+
+
+#start, #submit, #reset {
+    padding: 10px;
+    color: green;
+    margin: 10px 45%;
+    
+}
+
