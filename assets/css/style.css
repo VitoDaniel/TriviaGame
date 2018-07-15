@@ -14,6 +14,7 @@ body {
 
 h1 {
     text-align: center;
+    font-family: 'Fredericka the Great', cursive;
 }
 
 #questionArea {
@@ -24,17 +25,25 @@ h1 {
 
 #start, #submit, #reset {
     padding: 10px;
-    color: green;
     margin: 10px 45%;
-    
+    font-size: 25px; 
 }
+
+#start,#submit,#reset:hover{
+    background-color: #3e8e41;
+}
+
+
+#start,#submit,#reset:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 
 #timer {
     text-align: center;
     color: #a21b1b;
     border: 1px solid black;
     
-
-
 }
 
