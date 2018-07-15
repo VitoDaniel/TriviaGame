@@ -107,7 +107,9 @@ $(document).ready(function() {
         none = 0;
     })
 
-    $("#radioAnswers").prop("checked", checkAnswer());
+    // $("#radioAnswers").prop("checked", checkAnswer());
+
+
     // display trivia questions
     function displayQ(){
 
