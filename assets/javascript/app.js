@@ -165,19 +165,20 @@ $(document).ready(function() {
         $("#rightAnswer").html("<h3>" +  'Correct answers: ' + right);
         $("#wrongAnswer").html("<h3>" +  'Wrong answers: ' + wrong);
         $("#unAnswered").html("<h3>" +  'Unanswered: ' + none);
-        $("#reset").show();
+        // $("#reset").show();
+        $("#startOver").html("<h2>" + 'Refresh the page to play again!');
 
     }
 
 
-    $("#reset").on("click", function(){
-                $("#reset").fadeOut(500, startGame());
-                $(".question").fadeIn(1000);
-                $("#rightAnswer").hide();
-                $("#wrongAnswer").hide();
-                $("#unAnswered").hide();
-            
-            })
+    // $("#reset").on("click", function(){
+    //             $("#reset").fadeOut(500, startGame());
+    //             $(".question").fadeIn(1000);
+    //             $("#rightAnswer").hide();
+    //             $("#wrongAnswer").hide();
+    //             $("#unAnswered").hide();
+    //             $("#start").show()
+    //         })
 
 
     startGame();
