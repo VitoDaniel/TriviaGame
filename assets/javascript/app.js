@@ -133,8 +133,16 @@ $(document).ready(function() {
             }
     }
      
-    var isChecked = $("#radioAnswers").prop("checked");
-    console.log(isChecked); 
+
+    // // Scott's version
+    // $("input.radio").on("click", function(event){
+        
+    //     var jqElement = $(this)
+    //     console.log(jqElement.attr("value"));
+    // });
+
+
+
 
     function checkAnswer(){
         if (userGuess === myQuestions[i].correct){
@@ -164,6 +172,7 @@ $(document).ready(function() {
 
     $("#reset").on("click", function(){
                 $("#reset").fadeOut(500, startGame());
+                $(".question").fadeIn(1000);
                 $("#rightAnswer").hide();
                 $("#wrongAnswer").hide();
                 $("#unAnswered").hide();
@@ -172,5 +181,7 @@ $(document).ready(function() {
 
 
     startGame();
+
+   
 
 });
