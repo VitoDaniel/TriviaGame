@@ -121,20 +121,7 @@ $(document).ready(function() {
     
     //once user clicks submit button, all checked buttons will check right answer and push the results  to right/wrong var.
     $("#submit").on("click", function(){
-        //we are looping through each question in array
-        for (i=0; i < myQuestions.length; i++) {
-            // in each question we are looping through each answer
-            for (j=0; j < myQuestions[i].answers.length; j++) { 
-                // if checked box equals right answer , then add score to right var, if not  - to wrong var.
-                
-                if ($("input:checked")[i].value === myQuestions[i].answers[myQuestions[i].correct]) {
-                    right++;
-                } else {
-                    wrong++;
-                }
-            }
-        }
-
+        checkCorrect();
         displayResults();
         $("#timer").hide();
     });
@@ -142,7 +129,19 @@ $(document).ready(function() {
 
     // creating function to check if answers are correct and push it to right variable,
     function checkCorrect(){
-        
+        //we are looping through each question in array
+        for (i=0; i < myQuestions.length; i++) {
+            // in each question we are looping through each answer
+            for (j=0; j < myQuestions[i].answers.length; j++) { 
+                // if checked box equals right answer , then add score to right var, if not  - to wrong var.
+                if ($("input:checked")[i].value === myQuestions[i].answers[myQuestions[i].correct]) {
+                    
+                    right++;
+                } else {
+                    wrong++;
+                }
+            }
+        }
     }
   
 
