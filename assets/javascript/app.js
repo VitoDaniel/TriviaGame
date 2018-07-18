@@ -6,39 +6,39 @@ $(document).ready(function() {
         {
             question: "When did the Cold War end?",
             answers: ['1978','1984','1992','1989'],
-            correct: 3,
+            correct: '1989',
         },
         {
             question: "How many colonies was the US originally?",
             answers: ['11','12','13','14'],
-            correct: 2,
+            correct: '13',
         },
 
         {
             question: "Who was the 16th president of the US?",
             answers: ['Abraham Lincoln','Ulysses S. Grant','James Buchanan','Andrew Johnosn'],
-            correct: 0,
+            correct: 'Abraham',
         },
         {
             question: "How many Senatros in the US congress",
             answers: ['50','100','150','167'],
-            correct: 1,
+            correct: '100',
             
         },
         {
             question: "Who is credited with discovering America?",
             answers: ['John F. Kennedy','John McHenry','Christopher Columbs','Rudolph Frances'],
-            correct: 2,
+            correct: 'Christopher',
         },
         {
             question: "America won independence from this country.",
             answers: ['Brazil','Germany','France','Great Britan'],
-            correct: 3,
+            correct: 'Great',
         },
         {
             question: "Who invented the electric light bulb?",
             answers: ['Shirley Temple','Harry Ford','Thomas Edison','Andrew Jackson'],
-            correct: 2,
+            correct: 'Thomas',
         }
     ];
 
@@ -48,7 +48,7 @@ $(document).ready(function() {
     var wrong=0;
 
     // timer
-    var timer = 100;
+    var timer = 300;
     var time;
     var isTimeRunning = false;
 
@@ -132,15 +132,14 @@ $(document).ready(function() {
         //we are looping through each question in array
         for (i=0; i < myQuestions.length; i++) {
             // in each question we are looping through each answer
-            for (j=0; j < myQuestions[i].answers.length; j++) { 
+            // for (j=0; j < myQuestions[i].answers.length; j++) { 
                 // if checked box equals right answer , then add score to right var, if not  - to wrong var.
-                if ($("input:checked")[i].value === myQuestions[i].answers[myQuestions[i].correct]) {
-                    
+                if ($("input:checked")[i].value === myQuestions[i].correct) {
                     right++;
                 } else {
                     wrong++;
                 }
-            }
+            // }
         }
     }
   
