@@ -48,7 +48,7 @@ $(document).ready(function() {
     var wrong=0;
 
     // timer
-    var timer = 300;
+    var timer = 80;
     var time;
     var isTimeRunning = false;
 
@@ -68,6 +68,7 @@ $(document).ready(function() {
             if(timer === 0) {
                 stopCount();
                 $("#timer").html("<h2>Your time is up.</h2>");
+                checkCorrect();
                 setTimeout(displayResults, 2000);
             }
     }
@@ -129,6 +130,7 @@ $(document).ready(function() {
 
     // creating function to check if answers are correct and push it to right variable,
     function checkCorrect(){
+        $("#rules").hide();
         //we are looping through each question in array
         for (i=0; i < myQuestions.length; i++) {
             // in each question we are looping through each answer

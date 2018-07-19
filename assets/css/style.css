@@ -12,10 +12,11 @@ body {
     padding: 10px 20px;
 }
 
-h1 {
+h1, h4, #refresh {
     text-align: center;
     font-family: 'Fredericka the Great', cursive;
 }
+
 
 #questionArea {
     text-align: center;
