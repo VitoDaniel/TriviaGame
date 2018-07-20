@@ -47,8 +47,9 @@ $(document).ready(function() {
     // wrong answered
     var wrong=0;
 
+
     // timer
-    var timer = 80;
+    var timer = 10;
     var time;
     var isTimeRunning = false;
 
@@ -68,8 +69,7 @@ $(document).ready(function() {
             if(timer === 0) {
                 stopCount();
                 $("#timer").html("<h2>Your time is up.</h2>");
-                checkCorrect();
-                setTimeout(displayResults, 2000);
+                setTimeout(checkCorrect, 2000);
             }
     }
 
@@ -123,7 +123,6 @@ $(document).ready(function() {
     //once user clicks submit button, all checked buttons will check right answer and push the results  to right/wrong var.
     $("#submit").on("click", function(){
         checkCorrect();
-        displayResults();
         $("#timer").hide();
     });
 
@@ -131,18 +130,75 @@ $(document).ready(function() {
     // creating function to check if answers are correct and push it to right variable,
     function checkCorrect(){
         $("#rules").hide();
-        //we are looping through each question in array
-        for (i=0; i < myQuestions.length; i++) {
-            // in each question we are looping through each answer
-            // for (j=0; j < myQuestions[i].answers.length; j++) { 
-                // if checked box equals right answer , then add score to right var, if not  - to wrong var.
-                if ($("input:checked")[i].value === myQuestions[i].correct) {
-                    right++;
-                } else {
-                    wrong++;
-                }
-            // }
+
+        $.each($("input[name='question0']:checked"),function (){
+             if ($(this).val() === myQuestions[0].correct){
+                 right++
+             } else {
+                 wrong++;
+             }
+        });
+
+        $.each($("input[name='question1']:checked"),function (){
+            if ($(this).val() === myQuestions[1].correct){
+                right++
+            } else {
+                wrong++;
+            }
+       });
+
+       $.each($("input[name='question2']:checked"),function (){
+        if ($(this).val() === myQuestions[2].correct){
+            right++
+        } else {
+            wrong++;
         }
+        });
+
+        $.each($("input[name='question3']:checked"),function (){
+        if ($(this).val() === myQuestions[3].correct){
+            right++
+        } else {
+            wrong++;
+        }
+        });
+        $.each($("input[name='question4']:checked"),function (){
+            if ($(this).val() === myQuestions[4].correct){
+                right++
+            } else {
+                wrong++;
+            }
+        });
+        $.each($("input[name='question5']:checked"),function (){
+            if ($(this).val() === myQuestions[5].correct){
+                right++
+            } else {
+                wrong++;
+            }
+        });
+        $.each($("input[name='question6']:checked"),function (){
+            if ($(this).val() === myQuestions[6].correct){
+                right++
+            } else {
+                wrong++;
+            }
+
+
+        });
+        displayResults();
+
+        // //we are looping through each question in array
+        // for (i=0; i < myQuestions.length; i++) {
+        //     // in each question we are looping through each answer
+        //     // for (j=0; j < myQuestions[i].answers.length; j++) { 
+        //         // if checked box equals right answer , then add score to right var, if not  - to wrong var.
+        //         if ($("input:checked")[i].value === myQuestions[i].correct) {
+        //             right++;
+        //         } else {
+        //             wrong++;
+        //         }
+        //     // }
+        // }
     }
   
 
@@ -159,9 +215,14 @@ $(document).ready(function() {
     // when user clicks submit, or time is up, display results
     function displayResults(){
         $("#questionArea").hide();
+        console.log(typeof right);
+        console.log(typeof wrong);
+        console.log(typeof myQuestions.length);
+        var none = myQuestions.length - right - wrong;
         $("#submit").hide();
-        $("#rightAnswer").html("<h3>" +  'Correct answers: ' + right);
-        $("#wrongAnswer").html("<h3>" +  'Wrong answers: ' + wrong);
+        $("#rightAnswer").html("<h3>" +  'Correct answers: ' + right +  "</h3>");
+        $("#wrongAnswer").html("<h3>" +  'Wrong answers: ' + wrong + "</h3>");
+        $("#none").html("<h3>  Unanswered : " + none + "</h3>");
         $("#refresh").html("<h2>" + 'Refresh the page to play again!');
     }
 
