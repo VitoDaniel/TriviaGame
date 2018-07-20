@@ -49,7 +49,7 @@ $(document).ready(function() {
 
 
     // timer
-    var timer = 10;
+    var timer = 60;
     var time;
     var isTimeRunning = false;
 
