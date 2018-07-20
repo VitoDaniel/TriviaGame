@@ -185,6 +185,7 @@ $(document).ready(function() {
 
 
         });
+        stopCount();
         displayResults();
 
         // //we are looping through each question in array
@@ -214,10 +215,9 @@ $(document).ready(function() {
 
     // when user clicks submit, or time is up, display results
     function displayResults(){
+        
         $("#questionArea").hide();
-        console.log(typeof right);
-        console.log(typeof wrong);
-        console.log(typeof myQuestions.length);
+        // will do the math. from length of questions array we going to minus right and wrong, whatever left - unanswered
         var none = myQuestions.length - right - wrong;
         $("#submit").hide();
         $("#rightAnswer").html("<h3>" +  'Correct answers: ' + right +  "</h3>");
