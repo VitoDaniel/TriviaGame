@@ -48,7 +48,7 @@ $(document).ready(function() {
     var wrong=0;
 
 
-    // timer
+    // timer for trivia
     var timer = 60;
     var time;
     var isTimeRunning = false;
