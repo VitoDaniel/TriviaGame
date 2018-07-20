@@ -2,8 +2,8 @@
 
 ## Rules are simple!
 Click *"start"* to start playing!
-You will be given **6 questions**, and **80 seconds** to answer them all. 
-If you run out of time, game will stop.
+You will be given **7 questions**, and **60 seconds** to answer them all. 
+If you run out of time, game wil submit your answers for you.
 
 ![](assets/images/SS.png)
 
