@@ -8,7 +8,10 @@ If you run out of time, game will submit your answers for you.
 
 ![](assets/images/SS.png)
 
-
+## Technologies used:
+* HTML
+* CSS
+* jQuery
 
 
 # ***Go ahed, and play! : https://vitodaniel.github.io/TriviaGame/
